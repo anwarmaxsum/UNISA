@@ -1,0 +1,19 @@
+Example of Running Script:
+
+UCMerced dataset (for other dataset, please change the options file accordingly):
+Base Task Learning (60 base classes):
+- F2M: python train_lowsupervised.py -opt options/train/UCMerced/LFSCL_train_res18s_UCMerced_F2M_128bsr.yml
+- Baseline, FSLL: python train_lowsupervised.py -opt options/train/UCMerced/LFSCL_train_res18s_UCMerced_Baseline_128bs.yml
+- ICARL: python train_lowsupervised.py -opt options/train/UCMerced/LFSCL_train_res18s_UCMerced_iCaRL_128bs.yml
+- Rebalance (NCM): python train_lowsupervised.py -opt options/train/UCMerced/LFSCL_train_res18s_UCMerced_NCM_128bs.yml
+- UNISA: python -m torch.distributed.launch --nproc_per_node=1 --master_port=17671 train_unsupervised.py -opt options/train/UCMerced/USCL_train_res18_UCMerced_UWFMBase_B128_Knn.yml
+
+Continual Tasks Learning 5-shot(for 1-shot setting, please change the options file accordingly):
+- F2M: python incremental_procedure.py -opt options/train/UCMerced/Inc_res18_UCMerced_MTNBModel_5shots_F2Mr.yml
+- Baseline: python incremental_procedure.py -opt options/train/UCMerced/Inc_res18_UCMerced_Baseline_5shots.yml
+- FSLL: python incremental_procedure.py -opt options/train/UCMerced/Inc_res18_UCMerced_FSLLModel_5shots.yml
+- ICARL: incremental_procedure.py -opt options/train/UCMerced/Inc_res18_UCMerced_iCaRL_5shots.yml
+- Rebalance (NCM): incremental_procedure.py -opt options/train/UCMerced/Inc_res18_UCMerced_NCM_5shots.yml
+- UNISA: python -m torch.distributed.launch --nproc_per_node=1 --master_port=17671 incremental_unsupervised_nomem.py -opt options/train/UCMerced/Inc_res18_UCMerced_UWFMInc_Knn_5shots.yml
+
+
